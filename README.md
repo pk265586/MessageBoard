@@ -1,6 +1,7 @@
 # MessageBoard
 
 This is my work on task given in file "Backend Developer - Task Assignment - V2.0.pdf".  
+The project requires Java 14 or greater.  
 
 Main entry point - class MainWebEntry; when starting from IDE, the app starts listening on address http://localhost:8000
 
@@ -108,15 +109,3 @@ DB names and switching between QA and Production environment is configured in ap
 5. Some benchmarks on my local PC (used simple C# program to send requests):  
 5.1. Adding 100000 messages, one by one: ~500s.  
 5.2. With 100000 messages in DB, querying top [Random 1..200] messages 1000 times: ~3s.
-
-6. What's not implemented and why:  
-6.1. DI (dependency inversion/injection): left for later, due to my lack of experience in Java and thus the complexity of the task, it would take me too much time to implement.  
-6.2. Process of deployment on "real" web server, because I don't know how it's done.  
-6.3. Caching of data for performance. Tried to implement it (see tryCache branch), but with only slight performance increase, at the cost of bad thread safety.
-
-7. Recommendations (a.k.a. "What would I do if I was required to continue the project"):  
-7.1. Consider using some web api framework, like Spring (for me, it requires to learn it first).  
-7.2. Implement proper DI (see above).  
-7.3. Use more advanced data storage, like Sql Server, to take advantage of features like stored procedures, connection pooling, internal query cache, etc.  
-7.4. If still needed, implement proper cache (see above).  
-7.5. All "phase 2" features: proper login process, integration tests, etc.
