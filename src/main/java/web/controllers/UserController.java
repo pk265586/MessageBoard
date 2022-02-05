@@ -12,11 +12,18 @@ import web.model.UserLoginRequest;
 import web.model.UserLoginResponse;
 import web.model.UserRegistrationRequest;
 
+/**
+ * Web controller of User endpoints.
+ */
 public class UserController extends Controller {
     public UserController(ObjectMapper objectMapper) {
         super(objectMapper);
     }
 
+    /**
+     * Registers all User endpoints handled by this controller.
+     * @param server HttpServer instance to register endpoints for.
+     */
     @Override
     public void registerEndpoints(HttpServer server) {
         registerPostEndpoint(server, "/api/users/register", UserRegistrationRequest.class, this::userRegistration);

@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * Item of output array of messages/top-messages endpoint
+ */
 public class MessagesResponseItem {
     @Getter @Setter
     private String userName;

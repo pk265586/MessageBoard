@@ -7,6 +7,9 @@ import web.controllers.*;
 import web.infrastructure.ControllerUtils;
 import web.infrastructure.WebConst;
 
+/**
+ * Main entry point for web api
+ */
 public class MainWebEntry {
     public static void main(String[] args) throws Exception {
         initEnvironment();

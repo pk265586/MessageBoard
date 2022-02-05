@@ -3,6 +3,9 @@ package model;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Class representing user
+ */
 public class UserModel {
     @Getter @Setter
     private int id;

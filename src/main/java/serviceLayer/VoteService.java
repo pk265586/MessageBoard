@@ -7,7 +7,15 @@ import model.VoteModel;
 import utils.AppSettings;
 import utils.OperationResult;
 
+/**
+ * Service class implementing vote operations (as of today, it's only one operation) required by business logic
+ */
 public class VoteService {
+    /**
+     * Inserts new vote into DB; checks that user and message exist. If the operation succeeds, updates vote count in message record.
+     * @param vote Vote model to be stored in DB.
+     * @return OperationResult object telling whether the operation had success or failure.
+     */
     public OperationResult AddVote(VoteModel vote) {
         if (!userExists(vote.getUserId()))
             return OperationResult.Failure("User " + vote.getUserId() + " does not exist!");

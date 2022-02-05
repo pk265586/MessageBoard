@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * Class representing user message
+ */
 public class MessageModel {
     @Getter @Setter
     private int id;

@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import web.infrastructure.ResponseStatus;
 
+/**
+ * Class encapsulating some entity, response status and optional error message for web response.
+ */
 public class ResponseEntity<T> {
     @Getter @Setter
     private T body;
@@ -21,6 +24,10 @@ public class ResponseEntity<T> {
     public ResponseEntity() {
     }
 
+    /**
+     * Constructor for creation of response with "Ok" status.
+     * @param body Response body.
+     */
     public ResponseEntity(T body) {
         this(body, ResponseStatus.OK, null);
     }

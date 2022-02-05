@@ -14,11 +14,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Web controller of Message endpoints.
+ */
 public class MessageController extends Controller {
     public MessageController(ObjectMapper objectMapper) {
         super(objectMapper);
     }
 
+    /**
+     * Registers all Message endpoints handled by this controller.
+     * @param server HttpServer instance to register endpoints for.
+     */
     @Override
     public void registerEndpoints(HttpServer server) {
         registerPostEndpoint(server, "/api/messages/post", PostMessageRequest.class, this::postMessage);
