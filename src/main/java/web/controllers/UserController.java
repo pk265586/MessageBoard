@@ -18,18 +18,8 @@ public class UserController extends Controller {
 
     @Override
     public void registerEndpoints(HttpServer server) {
-        registerPostEndpoint(server, "/api/users/test", UserModel.class, this::testUserEndpoint);
         registerPostEndpoint(server, "/api/users/register", UserRegistrationRequest.class, this::userRegistration);
         registerPostEndpoint(server, "/api/users/login", UserLoginRequest.class, this::login);
-    }
-
-    private ResponseEntity<String> testUserEndpoint(UserModel user) {
-        if (!user.getName().equals("error")) {
-            String response = "Received user: " + user.getName();
-            return new ResponseEntity<>(response);
-        } else {
-            return new ResponseEntity<>("", ResponseStatus.BAD_REQUEST, "Test user Error!!!");
-        }
     }
 
     private ResponseEntity<String> userRegistration(UserRegistrationRequest request) {
