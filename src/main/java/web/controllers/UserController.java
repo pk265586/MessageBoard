@@ -9,6 +9,7 @@ import web.infrastructure.Controller;
 import web.model.ResponseEntity;
 import web.infrastructure.ResponseStatus;
 import web.model.UserLoginRequest;
+import web.model.UserLoginResponse;
 import web.model.UserRegistrationRequest;
 
 public class UserController extends Controller {
@@ -30,10 +31,12 @@ public class UserController extends Controller {
         return createResponseByOperationResult(result);
     }
 
-    private ResponseEntity<Integer> login(UserLoginRequest request) {
+    private ResponseEntity<UserLoginResponse> login(UserLoginRequest request) {
         var service = new UserService();
         var user = service.getUserByName(request.getUsername());
 
-        return user != null ? new ResponseEntity<>(user.getId()) : new ResponseEntity<>(0, ResponseStatus.BAD_REQUEST, "User " + request.getUsername() + " not found!");
+        return user != null ?
+                new ResponseEntity<>(new UserLoginResponse(user.getId())) :
+                new ResponseEntity<>(null, ResponseStatus.BAD_REQUEST, "User " + request.getUsername() + " not found!");
     }
 }
