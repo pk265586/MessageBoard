@@ -17,9 +17,8 @@ public class AppSettings {
     @Getter @Setter
     private String qaDbName;
 
-    /*public String getActualDbName() {
-        return isProduction ? productionDbName : qaDbName;
-    }*/
+    @Getter
+    private MessageCache messageCache;
 
     public String getConnectionString(){
         return getConnectionString(isProduction);
@@ -52,6 +51,11 @@ public class AppSettings {
             isProduction = Boolean.parseBoolean((String)properties.get("isProduction"));
             productionDbName = (String) properties.get("productionDbName");
             qaDbName = (String)properties.get("qaDbName");
+
+            boolean useCache = Boolean.parseBoolean((String)properties.get("useCache"));
+            if (useCache) {
+                messageCache = new MessageCache();
+            }
         }
         catch (Exception e){
             System.out.println("Error loading app settings: " + e.getMessage());

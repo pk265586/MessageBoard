@@ -18,12 +18,16 @@ public class VoteService {
         if (message == null)
             return OperationResult.Failure("Message " + vote.getMessageId() + " does not exist!");
 
-        var voteRepository = new VoteRepository(AppSettings.getInstance().getConnectionString());
+        var settings = AppSettings.getInstance();
+        var voteRepository = new VoteRepository(settings.getConnectionString());
         if (voteRepository.isVoteExists(vote.getUserId(), vote.getMessageId()))
             return OperationResult.Failure("User already voted for the message!");
 
         voteRepository.saveVote(vote);
         messageRepository.updateMessageVote(vote.getMessageId(), vote.getVoteValue());
+
+        if (settings.getMessageCache() != null)
+            settings.getMessageCache().clear();
 
         return OperationResult.Success();
     }

@@ -21,7 +21,7 @@ public class MessageRepository {
                     "From Message "+
                     "Inner Join User on User.Id = Message.UserId "+
                     "Order by Message.VoteCount desc, Message.CreationDate desc "+
-                    "Limit ?";
+                    "Limit ? Offset ?";
 
     private String connectionString;
     public MessageRepository(String connectionString){
@@ -48,11 +48,13 @@ public class MessageRepository {
         return helper.getEntity(FIND_ID_TEXT, id, this::getMessageByResultSet);
     }
 
-    public ArrayList<MessageModel> getTopMessages(int count) {
+    public ArrayList<MessageModel> getTopMessages(int count){
+        return getTopMessages(count, 0);
+    }
+
+    public ArrayList<MessageModel> getTopMessages(int count, int offset) {
         var helper = new SqlHelper(connectionString);
-        String sqlText = FIND_TOP_MESSAGES_TEXT;
-        var result = helper.getEntityList(sqlText, count, this::getMessageByResultSet);
-        return result;
+        return helper.getEntityList(FIND_TOP_MESSAGES_TEXT, new Object[]{count, offset}, this::getMessageByResultSet);
     }
 
     // this method will be used to vote for message, to reduce concurrency risk
