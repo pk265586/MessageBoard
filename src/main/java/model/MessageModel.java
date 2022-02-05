@@ -25,10 +25,10 @@ public class MessageModel {
     private String userName;
 
     public boolean isNew() {
-        return id<=0;
+        return id <= 0;
     }
 
-    public MessageModel(){
+    public MessageModel() {
     }
 
     // constructor for fast creation of new messages - used in tests

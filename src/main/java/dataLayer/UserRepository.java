@@ -14,8 +14,9 @@ public class UserRepository {
     private static final String FIND_NAME_TEXT = "Select * From User Where Name = ?";
     private static final String FIND_ID_TEXT = "Select * From User Where Id = ?";
 
-    private String connectionString;
-    public UserRepository(String connectionString){
+    private final String connectionString;
+
+    public UserRepository(String connectionString) {
         this.connectionString = connectionString;
     }
 
@@ -33,12 +34,12 @@ public class UserRepository {
         }
     }
 
-    public UserModel getUserByName(String name){
+    public UserModel getUserByName(String name) {
         var helper = new SqlHelper(connectionString);
         return helper.getEntity(FIND_NAME_TEXT, name, this::getUserByResultSet);
     }
 
-    public UserModel getUserById(int id){
+    public UserModel getUserById(int id) {
         var helper = new SqlHelper(connectionString);
         return helper.getEntity(FIND_ID_TEXT, id, this::getUserByResultSet);
     }
@@ -46,7 +47,7 @@ public class UserRepository {
     private UserModel getUserByResultSet(ResultSet set) {
         try {
             return new UserModel(set.getInt("Id"), set.getString("Name"));
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }

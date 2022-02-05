@@ -33,7 +33,7 @@ class UserServiceTest {
         service.registerUser(user);
 
         var findUser = service.getUserByName(userName);
-        assertTrue(findUser != null && findUser.getId() ==  user.getId() && findUser.getName().equals(userName));
+        assertTrue(findUser != null && findUser.getId() == user.getId() && findUser.getName().equals(userName));
     }
 
     @Test
@@ -45,6 +45,6 @@ class UserServiceTest {
         service.registerUser(user);
 
         var findUser = service.getUserById(user.getId());
-        assert findUser != null && findUser.getId() ==  user.getId() && findUser.getName().equals(userName);
+        assert findUser != null && findUser.getId() == user.getId() && findUser.getName().equals(userName);
     }
 }

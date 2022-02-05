@@ -1,7 +1,7 @@
 package utils;
 
 public class MathUtils {
-    public static int tryParseInt(String value){
+    public static int tryParseInt(String value) {
         return tryParseInt(value, 0);
     }
 

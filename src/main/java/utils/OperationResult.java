@@ -21,11 +21,11 @@ public class OperationResult {
         this.errorMessage = errorMessage;
     }
 
-    public static OperationResult Success(){
+    public static OperationResult Success() {
         return new OperationResult();
     }
 
-    public static OperationResult Failure(String errorMessage){
+    public static OperationResult Failure(String errorMessage) {
         return new OperationResult(errorMessage);
     }
 }

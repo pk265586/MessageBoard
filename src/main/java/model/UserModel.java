@@ -10,11 +10,11 @@ public class UserModel {
     @Getter @Setter
     private String name;
 
-    public boolean isNew(){
+    public boolean isNew() {
         return id <= 0;
     }
 
-    public UserModel(){
+    public UserModel() {
     }
 
     // constructor for fast creation of new users - used in tests

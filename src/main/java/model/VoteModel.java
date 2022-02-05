@@ -16,10 +16,10 @@ public class VoteModel {
     @Getter @Setter
     private int voteValue;
 
-    public VoteModel(){
+    public VoteModel() {
     }
 
-    public VoteModel(int userId, int messageId, int voteValue){
+    public VoteModel(int userId, int messageId, int voteValue) {
         this.userId = userId;
         this.messageId = messageId;
         this.voteValue = voteValue;

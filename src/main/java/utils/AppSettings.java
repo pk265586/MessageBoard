@@ -17,31 +17,28 @@ public class AppSettings {
     @Getter @Setter
     private String qaDbName;
 
-    /*public String getActualDbName() {
-        return isProduction ? productionDbName : qaDbName;
-    }*/
-
-    public String getConnectionString(){
+    public String getConnectionString() {
         return getConnectionString(isProduction);
     }
 
-    public String getConnectionString(boolean isProduction){
+    public String getConnectionString(boolean isProduction) {
         var dbName = getDbName(isProduction);
-        return  "jdbc:sqlite:" + dbName;
+        return "jdbc:sqlite:" + dbName;
     }
 
-    private String getDbName(boolean isProduction){
+    private String getDbName(boolean isProduction) {
         return isProduction ? productionDbName : qaDbName;
     }
 
-    private static AppSettings instance = new AppSettings();
-    public static AppSettings getInstance(){
+    private static final AppSettings instance = new AppSettings();
+
+    public static AppSettings getInstance() {
         return instance;
     }
 
     static final String CONFIG_FILE = "app.config";
 
-    public void load(){
+    public void load() {
         try {
             var configFile = new File(CONFIG_FILE);
 
@@ -49,11 +46,10 @@ public class AppSettings {
             var properties = new Properties();
             properties.load(reader);
 
-            isProduction = Boolean.parseBoolean((String)properties.get("isProduction"));
+            isProduction = Boolean.parseBoolean((String) properties.get("isProduction"));
             productionDbName = (String) properties.get("productionDbName");
-            qaDbName = (String)properties.get("qaDbName");
-        }
-        catch (Exception e){
+            qaDbName = (String) properties.get("qaDbName");
+        } catch (Exception e) {
             System.out.println("Error loading app settings: " + e.getMessage());
         }
     }

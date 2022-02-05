@@ -23,7 +23,7 @@ public class MessageRepository {
                     "Order by Message.VoteCount desc, Message.CreationDate desc "+
                     "Limit ?";
 
-    private String connectionString;
+    private final String connectionString;
     public MessageRepository(String connectionString){
         this.connectionString = connectionString;
     }
@@ -50,9 +50,7 @@ public class MessageRepository {
 
     public ArrayList<MessageModel> getTopMessages(int count) {
         var helper = new SqlHelper(connectionString);
-        String sqlText = FIND_TOP_MESSAGES_TEXT;
-        var result = helper.getEntityList(sqlText, count, this::getMessageByResultSet);
-        return result;
+        return helper.getEntityList(FIND_TOP_MESSAGES_TEXT, count, this::getMessageByResultSet);
     }
 
     // this method will be used to vote for message, to reduce concurrency risk

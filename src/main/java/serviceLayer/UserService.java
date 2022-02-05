@@ -18,14 +18,12 @@ public class UserService {
 
     public UserModel getUserByName(String userName) {
         var userRepository = getUserRepository();
-        var user = userRepository.getUserByName(userName);
-        return user;
+        return userRepository.getUserByName(userName);
     }
 
-    public UserModel getUserById(int userId){
+    public UserModel getUserById(int userId) {
         var userRepository = getUserRepository();
-        var user = userRepository.getUserById(userId);
-        return user;
+        return userRepository.getUserById(userId);
     }
 
     private UserRepository getUserRepository() {

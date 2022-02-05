@@ -84,13 +84,13 @@ class MessageRepositoryTest {
         messageRepository.saveMessage(new MessageModel(user.getId(), new Date(), "Message 3"));
 
         var list = messageRepository.getTopMessages(3);
-        assertTrue(list!= null && list.size() == 3);
+        assertTrue(list != null && list.size() == 3);
     }
 
     @Test
     void updateMessageVote() {
         var userRepository = new UserRepository(AppSettings.getInstance().getConnectionString());
-        var user = new UserModel("TestSaveNewMessageUser");
+        var user = new UserModel("TestUpdateMessageVoteUser");
         userRepository.saveUser(user);
 
         var messageRepository = new MessageRepository(AppSettings.getInstance().getConnectionString());
@@ -99,6 +99,6 @@ class MessageRepositoryTest {
 
         messageRepository.updateMessageVote(message.getId(), 1);
         var checkMessage = messageRepository.getMessageById(message.getId());
-        assertTrue(checkMessage.getVotes() == 1);
+        assertEquals(1, checkMessage.getVotes());
     }
 }

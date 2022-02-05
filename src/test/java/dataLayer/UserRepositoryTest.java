@@ -26,7 +26,7 @@ class UserRepositoryTest {
         repo.saveUser(user);
 
         var findUser = repo.getUserByName(userName);
-        assertTrue(findUser != null && findUser.getId() ==  user.getId() && findUser.getName().equals(user.getName()));
+        assertTrue(findUser != null && findUser.getId() == user.getId() && findUser.getName().equals(user.getName()));
     }
 
     @org.junit.jupiter.api.Test
@@ -38,6 +38,6 @@ class UserRepositoryTest {
         repo.saveUser(user);
 
         var findUser = repo.getUserById(user.getId());
-        assert findUser != null && findUser.getId() ==  user.getId() && findUser.getName().equals(user.getName());
+        assert findUser != null && findUser.getId() == user.getId() && findUser.getName().equals(user.getName());
     }
 }

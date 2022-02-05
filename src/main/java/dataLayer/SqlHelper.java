@@ -5,28 +5,10 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 public class SqlHelper {
-    private String connectionString;
+    private final String connectionString;
 
     public SqlHelper(String connectionString) {
         this.connectionString = connectionString;
-    }
-
-    public void testSql() {
-        try (var conn = DriverManager.getConnection(connectionString)) {
-            System.out.println("Connection to SQLite has been established.");
-
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * From User");
-
-            // loop through the result set
-            while (rs.next()) {
-                System.out.println(rs.getInt("Id") + "\t" +
-                        rs.getString("Name"));
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
     }
 
     public <T> T getEntity(String sqlText, Function<ResultSet, T> mapper) {
@@ -34,7 +16,7 @@ public class SqlHelper {
     }
 
     public <T> T getEntity(String sqlText, Object parameter, Function<ResultSet, T> mapper) {
-        return getEntity(sqlText, new Object[] {parameter}, mapper);
+        return getEntity(sqlText, new Object[]{parameter}, mapper);
     }
 
     public <T> T getEntity(String sqlText, Object[] parameters, Function<ResultSet, T> mapper) {
@@ -47,7 +29,7 @@ public class SqlHelper {
     }
 
     public <T> ArrayList<T> getEntityList(String sqlText, Object parameter, Function<ResultSet, T> mapper) {
-        return getEntityList(sqlText, new Object[] {parameter}, mapper);
+        return getEntityList(sqlText, new Object[]{parameter}, mapper);
     }
 
     public <T> ArrayList<T> getEntityList(String sqlText, Object[] parameters, Function<ResultSet, T> mapper) {
@@ -61,8 +43,7 @@ public class SqlHelper {
                 result.add(mapper.apply(set));
             }
             return result;
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -82,7 +63,7 @@ public class SqlHelper {
         }
     }
 
-    public int execSql(String sqlText){
+    public int execSql(String sqlText) {
         return execSql(sqlText, null);
     }
 
@@ -118,13 +99,11 @@ public class SqlHelper {
         }
     }
 
-    private PreparedStatement initPreparedStatement(PreparedStatement statement, Object[] parameters) throws SQLException {
+    private void initPreparedStatement(PreparedStatement statement, Object[] parameters) throws SQLException {
         if (parameters != null) {
             for (int idx = 0; idx < parameters.length; idx++) {
                 statement.setObject(idx + 1, parameters[idx]);
             }
         }
-        return statement;
     }
-
 }

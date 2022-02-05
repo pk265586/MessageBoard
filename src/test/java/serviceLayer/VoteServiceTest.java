@@ -26,10 +26,10 @@ class VoteServiceTest {
         var voteService = new VoteService();
         var voteResult = voteService.AddVote(new VoteModel(user.getId(), message.getId(), 1));
         assertTrue(voteResult.isSuccess() &&
-                messageService.getMessageById( message.getId()).getVotes() == 1);
+                messageService.getMessageById(message.getId()).getVotes() == 1);
 
         var badVoteResult = voteService.AddVote(new VoteModel(user.getId(), message.getId(), 1));
         assertTrue(badVoteResult.isError() &&
-                messageService.getMessageById( message.getId()).getVotes() == 1);
+                messageService.getMessageById(message.getId()).getVotes() == 1);
     }
 }

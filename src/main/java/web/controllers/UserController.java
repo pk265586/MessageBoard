@@ -34,6 +34,6 @@ public class UserController extends Controller {
         var service = new UserService();
         var user = service.getUserByName(request.getUsername());
 
-        return user != null ? new ResponseEntity<>(user.getId()) : new ResponseEntity<Integer>(0, ResponseStatus.BAD_REQUEST, "User " + request.getUsername() + " not found!");
+        return user != null ? new ResponseEntity<>(user.getId()) : new ResponseEntity<>(0, ResponseStatus.BAD_REQUEST, "User " + request.getUsername() + " not found!");
     }
 }
