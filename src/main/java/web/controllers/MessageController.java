@@ -63,7 +63,7 @@ public class MessageController extends Controller {
         var service = new MessageService();
         ArrayList<MessageModel> result = service.getTopMessages(messagesRequest.getCount());
 
-        var dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        var dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         MessagesResponseItem[] responseItems = result.stream()
                 .map(x -> new MessagesResponseItem(x.getUserName(), dateFormat.format(x.getDate()), x.getText(), x.getVotes()))
                 .toArray(MessagesResponseItem[]::new);
