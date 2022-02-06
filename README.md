@@ -92,7 +92,7 @@ if success: status 200; body
 if error: status 400; error message in body 
 ```
 
-2. Implemented auto-tests for all repositories (data layer) and for all services (service layer).  
+2. Implemented unit tests for all repositories (data layer) and for all services (service layer).  
 Used "qa" database for testing; before tests all data in that DB is deleted.
 
 3. Used SQLite database for data storage; DB files are in project root:  
@@ -104,7 +104,7 @@ DB names and switching between QA and Production environment is configured in ap
 4.1. jackson - for Json serialization/deserialization;  
 4.2. lombok - for simplifying POJO classes creation;  
 4.3. sqlite - for SQLite driver;  
-4.4. junit - for auto-tests.
+4.4. junit - for unit tests.
 
 5. Some benchmarks on my local PC (used simple C# program to send requests):  
 5.1. Adding 100000 messages, one by one: ~500s.  
